@@ -31,7 +31,7 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 // Servir archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, "front")));
+app.use(express.static(path.join(__dirname, "landing")));
 
 // Rutas de la API
 app.use("/api", authRoutes);
@@ -43,7 +43,7 @@ app.use("/api", authRoutes);
 // app.use(express.static(path.join(__dirname, "frontend"))); //avatarurl
 // Ruta "Catch-All" para el Frontend
 app.get("", (req, res) => {
-  res.sendFile(path.join(__dirname, "front", "login.html"));
+  res.sendFile(path.join(__dirname, "landing", "login.html"));
 });
 
 // Iniciar el servidor

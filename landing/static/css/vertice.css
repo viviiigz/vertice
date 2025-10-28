@@ -1,0 +1,620 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+    font-weight: 600;
+}
+
+h1{
+ font-family: "Sulphur Point", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Reglas generales para encabezados, el h1 del hero tiene su propia clase más abajo */
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+a { text-decoration: none; }
+
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+/* ---- Navbar ---- */
+header {
+    background-color: #ffffff;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex: 1; /* Permite que los links ocupen el espacio central */
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    list-style: none;
+    margin: 0;
+    /* Evita que los enlaces se envuelvan a la siguiente línea */
+    flex-wrap: nowrap; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Impide que el texto del enlace se rompa */
+}
+
+.nav-links a:hover {
+    color: #8cc63f;
+}
+
+.nav-links a.active {
+    color: #8cc63f;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 5px 0;
+    text-align: left;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #8cc63f;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.right-buttons a {
+    font-size: 0.95rem;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background-color: #4cd309;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center; /* ✅ centra texto dentro del botón */
+}
+
+.right-buttons a:hover {
+    background-color: #38a508;
+    border-color: #38a508;
+}
+
+/* ---- Botones de Llamada a la Acción (CTA) ---- */
+.cta-primary, .cta-secondary {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.cta-primary {
+    background-color: #4cd309;
+    color: #fff;
+    border: 2px solid #4cd309;
+}
+
+.cta-primary:hover {
+    background-color: #38a508;
+    border-color: #38a508;
+}
+
+.cta-secondary {
+    background-color: transparent;
+    color: #4cd309;
+    border: 2px solid #4cd309;
+}
+
+.cta-secondary:hover {
+    background-color: #4cd309;
+    color: #fff;
+}
+
+/* ---- Hero Section ---- */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.449), rgba(0,0,0,0.8)), url('../imgs/verticelanding.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 200px 20px; /* Aumenta el padding para dar más espacio vertical */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    text-align: center; /* Centra el texto */
+    flex-direction: column; /* Organiza el contenido en una columna */
+}
+
+.hero-content-container {
+    max-width: 900px; /* Ajusta el ancho para que el texto se vea bien */
+    margin: 0 auto;
+}
+
+/* Estilos específicos para el título principal del Hero */
+.headline {
+    font-size: 4rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el subtítulo */
+.sub-headline {
+    font-family: 'Monts,errat', sans-serif; 
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    margin-bottom: 20px;
+}
+
+
+/* Estilos específicos para el título principal del Hero */
+.headline {
+    font-size: 4rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.headline-destacado {
+    color: #b6ff5c; 
+}
+
+/* Estilos para el subtítulo */
+.sub-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+    max-width: 600px;
+    margin-top: 20px; /* Nuevo margen para separar del botón */
+    margin: 20px auto 40px;
+}
+
+.hero-cta-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center; 
+    margin-top: 0;
+}
+
+ 
+
+/* ---- Sección "¿Qué hacemos?" ---- */
+.what-we-do-text-section {
+    background-color: #F5FFF5 ; 
+    padding: 80px 20px 0; /* padding inferior a 0 para que el borde rasgado se vea bien */
+    text-align: center;
+}
+
+.what-we-do-text-section .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 80px; /* Espacio para que el texto no toque el borde */
+}
+
+.what-we-do-text-section .section-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4cd309; 
+    margin-bottom: 20px;
+}
+
+.what-we-do-text-section .section-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #333; 
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ---- Sección con la imagen y borde rasgado ---- */
+.torn-paper-section {
+    background-color: #F5FFF5;
+    position: relative;
+}
+
+.torn-paper-border {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background: url('../imgs/alimentoss.jpg') no-repeat center center/cover;
+    
+    mask-image: url('../imgs/ripped4.jpg'); 
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('../imgs/ripped4.jpg');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    
+    transform: translateY(-120px); /* Aumentado para que suba más */
+}
+
+
+
+
+/* ---- Sección "¿Por qué elegir Vértice?" ---- */
+.why-vertice-section {
+    background-color: #ffffff; 
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.why-vertice-section .section-title {
+    font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4cd309; 
+    margin-bottom: 20px;
+}
+
+.why-vertice-section .section-description-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 60px; /* Margen inferior para separar del grid */
+    color: #333;
+    line-height: 1.6;
+}
+
+.vertice-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto; /* centra el grid */
+}
+
+.vertice-benefit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Contenedor de la imagen: mismo ancho y alto para todos */
+.card-image-wrapper {
+  width: 180px;      /* ancho fijo */
+  height: 180px;     /* alto fijo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.benefit-img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain; /* para que no se deforme */
+}
+
+
+.card-content {
+    width: 100%;
+}
+
+.benefit-icon {
+    font-size: 1.5rem;
+    color: #4cd309;
+    margin-bottom: 10px;
+}
+
+.benefit-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4cd309;
+    margin-bottom: 10px;
+}
+
+.benefit-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+ 
+
+
+/* ---- Sección "Foros" ---- */
+.press-section {
+    background-color: #F5FFF5; 
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.press-section .section-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4cd309; 
+    margin-bottom: 50px;
+}
+
+.press-cards-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Espacio entre las tarjetas */
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en pantallas pequeñas */
+}
+
+.press-card {
+    display: block; /* Para que el enlace ocupe todo el espacio de la tarjeta */
+    flex: 1 1 450px; /* Las tarjetas ocuparán un ancho base de 450px y se adaptarán */
+    max-width: 500px; /* Ancho máximo para cada tarjeta */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Importante para que la imagen no se salga al escalar */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Efecto de transición suave */
+}
+
+.press-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Se agranda ligeramente y sube un poco al pasar el mouse */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+.press-image {
+    width: 100%;
+    height: 250px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    display: block;
+    transition: transform 0.3s ease-in-out; /* Transición para la imagen dentro de la tarjeta */
+}
+
+.press-card:hover .press-image {
+    transform: scale(1.05); /* La imagen también se agranda un poco más dentro de la tarjeta */
+}
+
+.press-text-content {
+    padding: 20px;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.press-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+
+/* ---- Final CTA Section ---- */
+.final-cta-section {
+    text-align: center;
+    background-color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: #333;
+}
+
+.final-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ---- Footer ---- */
+.main-footer {
+    padding: 32px 0 16px 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color:#ffffff; /* Color de fondo similar al de la imagen */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+/* 1. Sección del logo: Izquierda */
+.footer-logo-section {
+    display: flex; 
+    align-items: center;
+    gap: 12px; /* Espacio entre el logo y el texto de copyright */
+}
+
+.footer-logo-section img {
+    height: 40px; /* Tamaño del logo */
+    width: auto;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.footer-logo-section p {
+    font-size: 1rem;
+    color: #888; /* Color de texto similar al de la imagen */
+    margin: 0; /* Elimina márgenes por defecto del párrafo */
+}
+
+.footer-links-section {
+    flex-grow: 1; /* Permite que esta sección ocupe el espacio disponible en el centro */
+    text-align: right; /* Alinea el contenido de esta sección a la derecha */
+}
+
+.footer-links-section ul {
+    display: flex;
+    justify-content: flex-end; /* Alinea los ítems de la lista a la derecha */
+    gap: 18px; /* Espacio entre los links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links-section a {
+    color: #888;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links-section a:hover {
+    color: #4cd309; /* Color de hover */
+    text-decoration: underline;
+}
+
+
+.footer-socials-section .social-icons {
+    display: flex;
+    gap: 18px;
+    /* Para que los íconos se mantengan alineados si hay un "download free" */
+    align-items: center; 
+}
+
+.social-icons a {
+    color: #888;
+    font-size: 1.5rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #4cd309;
+    transform: scale(1.15);
+}
+
+/* Si tuvieras un botón de descarga en el HTML, podrías usar algo así */
+.download-button {
+    background-color: #000;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    margin-left: 20px; /* Para separarlo de los links */
+}
+
+.download-button:hover {
+    background-color: #333;
+}
+
+
+/* Footer inferior (si aplica, según tu HTML original) */
+.footer-bottom {
+    text-align: center;
+    color: #888;
+    font-size: 0.95rem;
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+    }
+    .footer-links-section ul {
+        flex-direction: column;
+        gap: 8px;
+        justify-content: center; /* Centrar en columna */
+    }
+    .footer-logo-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .footer-socials-section .social-icons {
+        justify-content: center; /* Centrar los iconos en columna */
+    }
+}
