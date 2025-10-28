@@ -43,7 +43,7 @@ app.use("/api", authRoutes);
 // app.use(express.static(path.join(__dirname, "frontend"))); //avatarurl
 // Ruta "Catch-All" para el Frontend
 app.get("", (req, res) => {
-  res.sendFile(path.join(__dirname, "front", "index.html"));
+  res.sendFile(path.join(__dirname, "front", "login.html"));
 });
 
 // Iniciar el servidor
