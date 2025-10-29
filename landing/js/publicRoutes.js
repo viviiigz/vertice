@@ -1,1 +1,1 @@
-localStorage.getItem('token') && window.location.replace('home.html')
+localStorage.getItem('token') && window.location.replace('home.html');
