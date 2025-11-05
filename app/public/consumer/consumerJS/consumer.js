@@ -73,28 +73,28 @@ const stores = [
 const pickupPoints = [
   {
     id: 1,
-    name: "Centro Comunal Villa Luz",
-    address: "Av. Siempre Viva 123",
-    lat: -34.6037,
-    lng: -58.3816,
+    name: "Plaza San Martín",
+    address: "LFontana L. J. 790 (Frente librería Capítulo) ",
+    lat: -26.184684,
+    lng:  -58.173266,
     hours: "Lun-Vie: 9:00-18:00, Sáb: 9:00-13:00",
     contact: "+54 11 1234-5678",
   },
   {
     id: 2,
-    name: "Plaza Central Shopping",
-    address: "Calle Falsa 456",
-    lat: -34.6097,
-    lng: -58.3756,
+    name: "Hierros Lider | Sucursal Formosa",
+    address: "Av. Dr. Luis Gutnisky 4425 (En diagonal a Cruz del Norte) ",
+    lat: -26.197625,
+    lng: -58.211469,
     hours: "Lun-Dom: 10:00-22:00",
     contact: "+54 11 8765-4321",
   },
   {
     id: 3,
-    name: "Estación de Servicio Shell",
-    address: "Ruta 40 km 25",
-    lat: -34.5987,
-    lng: -58.3896,
+    name: "Parque Acuático 2 (Circuito 5)",
+    address: "Av. Soldado Formoseño en Malvinas",
+    lat: -26.142869, 
+    lng: -58.157912,
     hours: "24 horas",
     contact: "+54 11 5555-6666",
   },
@@ -517,7 +517,7 @@ function searchByCategory(category) {
 
 function initializeMap() {
   // Centro de Buenos Aires como punto inicial
-  map = L.map("leafletMap").setView([-34.6037, -58.3816], 13)
+  map = L.map("leafletMap").setView([-26.1764, -58.1788], 13)
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contributors",
