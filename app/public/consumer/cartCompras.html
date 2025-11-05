@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vértice - Mi Carrito</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <nav class="navbar-sidebar">
+        <div class="sidebar-logo">
+            <img src="../shared/images/logo-vertice.png" alt="Vértice" class="sidebar-logo-img">
+        </div>
+        <div class="sidebar-nav">
+            <a href="dashboard.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">🏠</span>
+                <span class="nav-label-sidebar">Inicio</span>
+            </a>
+            <a href="products.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">🔍</span>
+                <span class="nav-label-sidebar">Productos</span>
+            </a>
+            <a href="cart.html" class="nav-btn-sidebar active">
+                <span class="nav-icon-sidebar">🛒</span>
+                <span class="nav-label-sidebar">Mi Carrito</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+            <a href="profile.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">👤</span>
+                <span class="nav-label-sidebar">Mi Perfil</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="section-container">
+            <h2 class="section-title">🛒 Mi Carrito</h2>
+            
+            <div class="cart-content">
+                <!-- Items del Carrito -->
+                <div class="cart-items" id="cartItems">
+                    <p class="empty-state">Tu carrito está vacío</p>
+                </div>
+                
+                <!-- Resumen de Compra -->
+                <div class="cart-summary" id="cartSummary" style="display: none;">
+                    <h3 class="summary-title">Resumen de compra</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Descuento:</span>
+                        <span id="discount" class="discount-text">-€0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">€0.00</span>
+                    </div>
+                    
+                    <!-- Código Promocional -->
+                    <div class="promo-code-section">
+                        <input type="text" id="promoCode" class="promo-input" placeholder="Código promocional">
+                        <button class="btn-secondary" onclick="applyPromoCode()">Aplicar</button>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="proceedToCheckout()">Proceder al retiro</button>
+                </div>
+            </div>
+
+            <!-- Productos Sugeridos -->
+            <div class="suggested-products">
+                <h3 class="section-subtitle">💡 Podría interesarte</h3>
+                <div class="suggested-grid" id="suggestedGrid">
+                    <!-- Productos sugeridos dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Checkout -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmar Retiro</h3>
+                <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido del modal de checkout -->
+                <div id="checkoutProductInfo"></div>
+                
+                <h4 class="modal-subtitle">Seleccionar punto de retiro</h4>
+                <div class="pickup-options">
+                    <!-- Opciones de retiro -->
+                </div>
+
+                <h4 class="modal-subtitle">Seleccionar horario</h4>
+                <select class="time-select" id="timeSelect">
+                    <option>Hoy 18:00 - 20:00</option>
+                    <option>Mañana 10:00 - 12:00</option>
+                    <option>Mañana 18:00 - 20:00</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeCheckoutModal()">Cancelar</button>
+                <button class="btn-primary" onclick="confirmReservation()">Confirmar reserva</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/utils.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

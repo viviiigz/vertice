@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vértice - Productos</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <nav class="navbar-sidebar">
+        <div class="sidebar-logo">
+            <img src="../shared/images/logo-vertice.png" alt="Vértice" class="sidebar-logo-img">
+        </div>
+        <div class="sidebar-nav">
+            <a href="dashboard.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">🏠</span>
+                <span class="nav-label-sidebar">Inicio</span>
+            </a>
+            <a href="products.html" class="nav-btn-sidebar active">
+                <span class="nav-icon-sidebar">🔍</span>
+                <span class="nav-label-sidebar">Productos</span>
+            </a>
+            <a href="cart.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">🛒</span>
+                <span class="nav-label-sidebar">Mi Carrito</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+            <a href="profile.html" class="nav-btn-sidebar">
+                <span class="nav-icon-sidebar">👤</span>
+                <span class="nav-label-sidebar">Mi Perfil</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="section-container">
+            <h2 class="section-title">Buscar Alimentos</h2>
+            
+            <!-- Barra de Búsqueda -->
+            <div class="search-bar-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar alimentos...">
+                <button class="search-btn" onclick="performSearch()">🔍</button>
+            </div>
+
+            <!-- Filtros de Categorías -->
+            <div class="category-filters">
+                <button class="category-btn active" data-category="">Todos</button>
+                <button class="category-btn" data-category="frutas">🍎 Frutas</button>
+                <button class="category-btn" data-category="verduras">🥦 Verduras</button>
+                <button class="category-btn" data-category="panaderia">🥖 Panadería</button>
+                <button class="category-btn" data-category="lacteos">🥛 Lácteos</button>
+            </div>
+
+            <!-- Filtros Avanzados -->
+            <details class="advanced-filters">
+                <summary>Filtros avanzados</summary>
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label class="filter-label">Distancia máxima</label>
+                        <select id="distanceFilter" class="filter-select">
+                            <option value="">Todas</option>
+                            <option value="1">1 km</option>
+                            <option value="5">5 km</option>
+                            <option value="10">10 km</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Precio máximo</label>
+                        <input type="number" id="priceFilter" class="filter-input" placeholder="€">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Ordenar por</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="relevancia">Relevancia</option>
+                            <option value="precio">Precio más bajo</option>
+                            <option value="distancia">Más cercano</option>
+                            <option value="descuento">Mayor descuento</option>
+                        </select>
+                    </div>
+                    <button class="btn-secondary" onclick="applyFilters()">Aplicar Filtros</button>
+                </div>
+            </details>
+
+            <!-- Vista Mapa/Lista Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">📋 Lista</button>
+                <button class="view-btn" data-view="map">🗺️ Mapa</button>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Productos generados dinámicamente -->
+            </div>
+
+            <!-- Mapa (oculto inicialmente) -->
+            <div id="productsMap" class="products-map-container" style="display: none;">
+                <div id="leafletMap" class="leaflet-map-container"></div>
+            </div>
+
+            <!-- Paginación -->
+            <div class="pagination" id="pagination">
+                <button class="pagination-btn" onclick="loadPreviousPage()">‹ Anterior</button>
+                <span class="pagination-info" id="pageInfo">Página 1 de 1</span>
+                <button class="pagination-btn" onclick="loadNextPage()">Siguiente ›</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot -->
+    <div class="chatbot-float">
+        <!-- Mismo chatbot que dashboard -->
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../shared/utils.js"></script>
+    <script src="../shared/chatbot.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

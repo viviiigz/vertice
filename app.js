@@ -41,12 +41,15 @@ app.use(cookieParser());
 // 1. Manejar la ruta raíz "/" primero para forzar la carga de login.html
 app.get("/", (req, res) => {
     // Redirige al archivo de inicio de sesión
-    res.sendFile(path.join(__dirname, "landing", "login.html"));
+    res.sendFile(path.join(__dirname, "landing", "vertice.html"));
 });
 
 // 2. Servir archivos estáticos del frontend (landing)
 // Esto maneja todos los demás archivos (register.html, CSS, JS, imágenes, etc.)
 app.use(express.static(path.join(__dirname, "landing")));
+
+// 3. Servir archivos estáticos de la APP (consumer, bank, etc.)
+app.use("/app", express.static(path.join(__dirname, "app")));
 
 
 // =======================================================

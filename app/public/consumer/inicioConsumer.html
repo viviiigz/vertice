@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vértice - Reduce desperdicios, ahorra dinero</title>
+    <!-- Agregando Leaflet.js para mapas interactivos -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../shared/styleShared.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./static/img/v-vertice.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar lateral izquierdo tipo dock -->
+    <nav class="navbar-sidebar">
+      <div class="sidebar-logo">
+        <img
+          src="/vertice-logo-largo.png"
+          alt="Vértice"
+          class="sidebar-logo-img"
+        />
+      </div>
+      <div class="sidebar-nav">
+        <button
+          class="nav-btn-sidebar active"
+          data-section="home"
+          title="Inicio"
+        >
+          <span class="nav-icon-sidebar">🏠</span>
+          <span class="nav-label-sidebar">Inicio</span>
+        </button>
+        <button class="nav-btn-sidebar" data-section="cart" title="Mi Carrito">
+          <span class="nav-icon-sidebar">🛒</span>
+          <span class="nav-label-sidebar">Mi Carrito</span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button
+          class="nav-btn-sidebar"
+          data-section="reservations"
+          title="Mis Reservas"
+        >
+          <span class="nav-icon-sidebar">📦</span>
+          <span class="nav-label-sidebar">Mis Reservas</span>
+        </button>
+        <button
+          class="nav-btn-sidebar"
+          data-section="profile"
+          title="Mi Perfil"
+        >
+          <span class="nav-icon-sidebar">👤</span>
+          <span class="nav-label-sidebar">Mi Perfil</span>
+        </button>
+        <button
+          class="nav-btn-sidebar"
+          data-section="settings"
+          title="Configuración"
+        >
+          <span class="nav-icon-sidebar">⚙️</span>
+          <span class="nav-label-sidebar">Configuración</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- HOME SECTION -->
+      <section id="home" class="section active">
+        <!-- Banner de Bienvenida -->
+        <div class="hero-banner">
+          <div class="hero-content">
+            <h1 class="hero-title" id="welcome-title">
+              Hola, <span id="username-display"></span>! Bienvenido de nuevo.
+            </h1>
+            <p class="hero-subtitle" id="welcome-subtitle">
+              🍃 Reduce desperdicios, ahorra dinero
+            </p>
+          </div>
+        </div>
+
+        <!-- Buscador Integrado -->
+        <div class="section-container">
+          <div class="search-bar-container">
+            <input
+              type="text"
+              id="homeSearchInput"
+              class="search-input"
+              placeholder="🔍 Buscar alimentos..."
+            />
+            <button class="search-btn" onclick="searchFromHome()">🔍</button>
+          </div>
+        </div>
+
+        <!-- Categorías -->
+        <div class="section-container">
+          <div class="category-filters">
+            <button class="category-btn" onclick="searchByCategory('frutas')">
+              🍎 Frutas
+            </button>
+            <button class="category-btn" onclick="searchByCategory('verduras')">
+              🥦 Verduras
+            </button>
+            <button
+              class="category-btn"
+              onclick="searchByCategory('panaderia')"
+            >
+              🥖 Panadería
+            </button>
+            <button class="category-btn" onclick="searchByCategory('lacteos')">
+              🥛 Lácteos
+            </button>
+          </div>
+        </div>
+
+        <!-- Carrusel de Ofertas Destacadas -->
+        <div class="section-container">
+          <h2 class="section-title">🔥 Ofertas del día</h2>
+          <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
+              ‹
+            </button>
+            <div class="carousel" id="carousel">
+              <!-- Ofertas generadas dinámicamente -->
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel(1)">
+              ›
+            </button>
+          </div>
+        </div>
+
+        <!-- Tips para Reducir Desperdicio -->
+        <div class="section-container">
+          <h2 class="section-title">💡 Tips contra el desperdicio</h2>
+          <div class="tips-grid">
+            <div class="tip-card">
+              <div class="tip-icon">🍎</div>
+              <h3 class="tip-title">Compra lo necesario</h3>
+              <p class="tip-text">
+                Planifica tus comidas y compra solo lo que vas a consumir
+              </p>
+            </div>
+            <div class="tip-card">
+              <div class="tip-icon">❄️</div>
+              <h3 class="tip-title">Almacena correctamente</h3>
+              <p class="tip-text">
+                Conserva los alimentos en las condiciones adecuadas para
+                prolongar su vida
+              </p>
+            </div>
+            <div class="tip-card">
+              <div class="tip-icon">♻️</div>
+              <h3 class="tip-title">Aprovecha sobras</h3>
+              <p class="tip-text">
+                Transforma las sobras en nuevas recetas deliciosas
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nueva sección MI CARRITO -->
+      <section id="cart" class="section">
+        <div class="section-container">
+          <h2 class="section-title">🛒 Mi Carrito</h2>
+
+          <div class="cart-content">
+            <div class="cart-items" id="cartItems">
+              <p class="empty-state">Tu carrito está vacío</p>
+            </div>
+
+            <div class="cart-summary" id="cartSummary" style="display: none">
+              <h3 class="summary-title">Resumen de compra</h3>
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">€0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Descuento:</span>
+                <span id="discount" class="discount-text">-€0.00</span>
+              </div>
+              <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total">€0.00</span>
+              </div>
+              <button class="btn-primary" onclick="proceedToPickup()">
+                Proceder al retiro
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEARCH SECTION -->
+      <section id="search" class="section">
+        <div class="section-container">
+          <h2 class="section-title">Buscar Alimentos</h2>
+
+          <!-- Barra de Búsqueda -->
+          <div class="search-bar-container">
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Buscar alimentos..."
+            />
+            <button class="search-btn">🔍</button>
+          </div>
+
+          <!-- Filtros de Categorías -->
+          <div class="category-filters">
+            <button class="category-btn active" data-category="">Todos</button>
+            <button class="category-btn" data-category="frutas">
+              🍎 Frutas
+            </button>
+            <button class="category-btn" data-category="verduras">
+              🥦 Verduras
+            </button>
+            <button class="category-btn" data-category="panaderia">
+              🥖 Panadería
+            </button>
+            <button class="category-btn" data-category="lacteos">
+              🥛 Lácteos
+            </button>
+          </div>
+
+          <!-- Filtros Avanzados -->
+          <details class="advanced-filters">
+            <summary>Filtros avanzados</summary>
+            <div class="filters-container">
+              <div class="filter-group">
+                <label class="filter-label">Distancia máxima</label>
+                <select id="distanceFilter" class="filter-select">
+                  <option value="">Todas</option>
+                  <option value="1">1 km</option>
+                  <option value="5">5 km</option>
+                  <option value="10">10 km</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label class="filter-label">Precio máximo</label>
+                <input
+                  type="number"
+                  id="priceFilter"
+                  class="filter-input"
+                  placeholder="€"
+                />
+              </div>
+              <button class="btn-secondary" onclick="applyFilters()">
+                Aplicar
+              </button>
+            </div>
+          </details>
+
+          <!-- Grid de Productos -->
+          <div class="products-grid" id="productsGrid">
+            <!-- Productos generados dinámicamente -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección MIS RESERVAS con mapa Leaflet -->
+      <section id="reservations" class="section">
+        <div class="section-container">
+          <h2 class="section-title">📦 Mis Reservas - Puntos de Encuentro</h2>
+
+          <!-- Filtros de Distancia -->
+          <div class="distance-filters">
+            <button class="distance-btn active" data-distance="all">
+              Todos
+            </button>
+            <button class="distance-btn" data-distance="1">1 km</button>
+            <button class="distance-btn" data-distance="3">3 km</button>
+            <button class="distance-btn" data-distance="5">5 km</button>
+            <button class="distance-btn" data-distance="10">10 km</button>
+          </div>
+
+          <!-- Mapa Leaflet -->
+          <div id="leafletMap" class="leaflet-map-container"></div>
+
+          <!-- Lista de Puntos de Encuentro -->
+          <div class="pickup-points-section">
+            <h3 class="section-subtitle">Puntos de Encuentro Disponibles</h3>
+            <div class="pickup-points-list" id="pickupPointsList">
+              <!-- Puntos generados dinámicamente -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE SECTION -->
+      <section id="profile" class="section">
+        <div class="section-container">
+          <h2 class="section-title">👤 Mi Perfil</h2>
+
+          <!-- Información Personal -->
+          <div class="profile-header">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-info">
+              <h3 class="profile-name">Usuario Demo</h3>
+              <p class="profile-email">usuario@ejemplo.com</p>
+            </div>
+            <button class="btn-secondary">Editar Perfil</button>
+          </div>
+
+          <!-- Pestañas -->
+          <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="historial">
+              Historial
+            </button>
+            <button class="profile-tab" data-tab="favoritos">Favoritos</button>
+          </div>
+
+          <!-- Contenido de Pestañas -->
+          <div class="profile-content">
+            <div id="historial" class="tab-content active">
+              <p class="empty-state">No hay historial disponible</p>
+            </div>
+            <div id="favoritos" class="tab-content">
+              <p class="empty-state">No tienes favoritos guardados</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nueva sección CONFIGURACIÓN -->
+      <section id="settings" class="section">
+        <div class="section-container">
+          <h2 class="section-title">⚙️ Configuración</h2>
+
+          <div class="settings-list">
+            <div class="setting-item">
+              <span>Notificaciones push</span>
+              <label class="toggle">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <span>Modo oscuro</span>
+              <label class="toggle">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <span>Alertas de ofertas cercanas</span>
+              <label class="toggle">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <button class="btn-logout">Cerrar sesión</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Chatbot flotante global -->
+    <div class="chatbot-float" id="chatbotFloat">
+      <button class="chatbot-toggle" onclick="toggleChatbot()">
+        <span class="chatbot-icon">💬</span>
+      </button>
+      <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+          <h3>Asistente Vértice</h3>
+          <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+        </div>
+        <div class="chatbot-body">
+          <div class="faq-section">
+            <h4 class="faq-title">Preguntas Frecuentes</h4>
+            <div class="faq-buttons">
+              <button
+                class="faq-btn"
+                onclick="sendFAQ('¿Cómo reservo alimentos?')"
+              >
+                ¿Cómo reservo alimentos?
+              </button>
+              <button
+                class="faq-btn"
+                onclick="sendFAQ('¿Dónde retiro mi pedido?')"
+              >
+                ¿Dónde retiro mi pedido?
+              </button>
+              <button
+                class="faq-btn"
+                onclick="sendFAQ('Política de cancelación')"
+              >
+                Política de cancelación
+              </button>
+            </div>
+          </div>
+          <div class="chat-messages" id="chatbotMessages">
+            <div class="chat-bubble bot">
+              <p>
+                ¡Hola! Soy el asistente de Vértice. ¿En qué puedo ayudarte hoy?
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="chatbot-footer">
+          <input
+            type="text"
+            id="chatbotInput"
+            class="chat-input"
+            placeholder="Escribe tu pregunta..."
+          />
+          <button class="chat-send-btn" onclick="sendChatbotMessage()">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Reserva -->
+    <div id="reservationModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Reservar Producto</h3>
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="modalProductInfo"></div>
+
+          <h4 class="modal-subtitle">¿Cómo quieres retirar?</h4>
+          <div class="pickup-options">
+            <label class="pickup-option">
+              <input type="radio" name="pickup" value="tienda" checked />
+              <span>○ Recoger en tienda</span>
+            </label>
+            <label class="pickup-option">
+              <input type="radio" name="pickup" value="punto" />
+              <span>○ Punto de encuentro designado</span>
+            </label>
+          </div>
+
+          <div id="pickupPointsMap" class="pickup-map" style="display: none">
+            <h4 class="modal-subtitle">Puntos de Encuentro Disponibles</h4>
+            <div class="pickup-points-list">
+              <label class="pickup-point">
+                <input type="radio" name="point" value="1" />
+                <div>
+                  <strong>Centro Comunal Villa Luz</strong>
+                  <p>Av. Siempre Viva 123 - 0.8 km</p>
+                </div>
+              </label>
+              <label class="pickup-point">
+                <input type="radio" name="point" value="2" />
+                <div>
+                  <strong>Plaza Central Shopping</strong>
+                  <p>Calle Falsa 456 - 1.5 km</p>
+                </div>
+              </label>
+              <label class="pickup-point">
+                <input type="radio" name="point" value="3" />
+                <div>
+                  <strong>Estación de Servicio Shell</strong>
+                  <p>Ruta 40 km 25 - 3.2 km</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <h4 class="modal-subtitle">Seleccionar horario</h4>
+          <select class="time-select">
+            <option>Hoy 18:00 - 20:00</option>
+            <option>Mañana 10:00 - 12:00</option>
+            <option>Mañana 18:00 - 20:00</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+          <button class="btn-primary" onclick="confirmReservation()">
+            Confirmar reserva
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../consumer/consumerJS/consumer.js"></script>
+    <script src="../consumer/consumerJS/dashboard.js"></script>
+        <script>
+      // Ejecutar cuando la página cargue
+      document.addEventListener('DOMContentLoaded', function() {
+        if (checkAuth()) {
+          displayUserName();
+        }
+      });
+    </script>
+  </body>
+</html>

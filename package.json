@@ -1,30 +1,38 @@
 {
+  "name": "verticeproyecto2",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node app.js",
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viviiigz/vertice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viviiigz/vertice/issues"
+  },
+  "homepage": "https://github.com/viviiigz/vertice#readme",
+  "description": "",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
+    "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-validator": "^7.3.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.2",
+    "mongoose": "^8.19.3",
     "morgan": "^1.10.1",
     "multer": "^2.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  },
-  "name": "verticeproyecto2",
-  "version": "1.0.0",
-  "main": "app.js",
-  "type": "module",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }

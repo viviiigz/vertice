@@ -27,8 +27,15 @@ export const login = async (req, res) => {
     const token = generateToken({
       id: user._id,
       username: user.username,
+      role: user.role 
     });
-    return res.json({ message: "Login exitoso", token });
+      return res.json({ 
+      success: true,
+      message: "Login exitoso", 
+      token,
+      userType: user.role, // ← Enviar el tipo de usuario al frontend
+      username: user.username
+    });
   } catch (error) {
     return res
       .status(500)
@@ -39,27 +46,64 @@ export const login = async (req, res) => {
 export const register = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-    if (existingUser) {
-      return res.status(400).json({ message: "El email o username ya existe" });
+
+    // Validar campos requeridos
+    if (!username || !email || !password || !role) {
+      return res.status(400).json({ 
+        success: false,
+        message: "Todos los campos son requeridos" 
+      });
     }
+    
+    // ✅ CORREGIDO: Usar los mismos roles que la base de datos
+    const allowedRoles = ['User', 'Comercio', 'Banco de Alimentos', 'Admin'];
+    
+    if (!allowedRoles.includes(role)) {
+      return res.status(400).json({ 
+        success: false,
+        message: `Rol no válido. Los roles permitidos son: ${allowedRoles.join(", ")}`
+      });
+    }
+    
+    // Verificar si el usuario ya existe
+    const existingUser = await User.findOne({ 
+      $or: [{ email }, { username }] 
+    });
+    
+    if (existingUser) {
+      return res.status(400).json({ 
+        success: false,
+        message: "El email o username ya existe" 
+      });
+    }
+    
+    // Crear nuevo usuario
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
       role: role,
     });
+    
     await newUser.save();
-    return res.status(201).json({ message: "Usuario registrado exitosamente" });
+    
+    return res.status(201).json({ 
+      success: true,
+      message: "Usuario registrado exitosamente" 
+    });
+    
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Error al registrar usuario", error: error.message });
+    console.error("❌ ERROR en registro:", error);
+    return res.status(500).json({ 
+      success: false,
+      message: "Error al registrar usuario", 
+      error: error.message 
+    });
   }
 };
-
 export const profile = async (req, res) => {
   try {
     // El .select("-password") debe estar en el modelo User, y lo está.
