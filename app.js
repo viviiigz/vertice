@@ -66,6 +66,6 @@ app.use("/api", authRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, async () => {
-  await connectDB();
-  console.log(`✅ Servidor unificado corriendo en http://localhost:${PORT}`);
+ await connectDB();
+ console.log(`✅ Servidor unificado corriendo en http://localhost:${PORT}`);
 });

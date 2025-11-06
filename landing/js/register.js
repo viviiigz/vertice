@@ -21,6 +21,6 @@ const register = async (event) => {
     window.location.replace("./login.html");
   } catch (error) {
     console.error("Error en la petición de registro:", error);
-    alert("Ocurrió un error de red. Revisa la consola del navegador.");
+    // alert("Ocurrió un error de red. Revisa la consola del navegador.");
   }
 };
