@@ -34,6 +34,7 @@ export const login = async (req, res) => {
       message: "Login exitoso", 
       token,
       userType: user.role, // ← Enviar el tipo de usuario al frontend
+      email: user.email,
       username: user.username
     });
   } catch (error) {

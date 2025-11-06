@@ -25,32 +25,6 @@
     />
   </head>
   <body>
-    <!-- header con mi Perfil -->
-<header class="main-header">
-        
-        <div class="user-dropdown-container">
-            <div class="user-profile-trigger">
-                <i class="bi bi-person-circle profile-avatar-icon"></i> 
-                <span class="user-name" id="header-username-display"></span>
-            </div>
-
-            <div class="dropdown-content-profile">
-                <div class="user-info-header">
-                </div>
-
-                <button class="nav-btn-dropdown" onclick="navigateToSection('profile')">
-                    <i class="bi bi-person-fill"></i> Mi Perfil
-                </button>
-                <button class="nav-btn-dropdown" onclick="navigateToSection('settings')">
-                    <i class="bi bi-gear-wide"></i> Configuración
-                </button>
-                <button class="nav-btn-dropdown logout-btn" onclick="logout()">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-                </button>
-            </div>
-        </div>
-    </header>
-    
     <!-- Navbar lateral izquierdo tipo dock -->
     <nav class="navbar-sidebar">
       <div class="sidebar-logo">
@@ -82,7 +56,7 @@
         <i class="bi bi-box-seam"></i>
           <span class="nav-label-sidebar">Mis Reservas</span>
         </button>
-        <!-- <button
+        <button
           class="nav-btn-sidebar"
           data-section="profile"
           title="Mi Perfil"
@@ -97,7 +71,7 @@
         >
                 <i class="bi bi-gear-wide"></i>
                  <span class="nav-label-sidebar">Configuración</span>
-        </button> -->
+        </button>
       </div>
     </nav>
 
@@ -332,20 +306,20 @@ Mis Reservas - Puntos de Encuentro</h2>
 
       <!-- PROFILE SECTION -->
       <section id="profile" class="section">
-     <div class="section-container">
-        <h2 class="section-title"> <i class="bi bi-person-fill"></i> Mi Perfil</h2>
+        <div class="section-container">
+          <h2 class="section-title">  <i class="bi bi-person-fill"></i>
+Mi Perfil</h2>
 
-        <div class="profile-header">
-            <div class="profile-avatar"> <i class="bi bi-person-fill"></i> </div> 
+          <!-- Información Personal -->
+          <div class="profile-header">
+            <div class="profile-avatar"> <i class="bi bi-person-fill"></i>
+</div>
             <div class="profile-info">
-                <h3 class="profile-name" id="profile-name-display">Usuario Demo</h3> 
-                <p class="profile-email" id="profile-email-display">usuario@ejemplo.com</p> 
+              <h3 class="profile-name">Usuario Demo</h3>
+              <p class="profile-email">usuario@ejemplo.com</p>
             </div>
-            <button class="btn-secondary" onclick="editProfile()">Editar Perfil</button>
-        </div>
-        
-        </div>
-          
+            <button class="btn-secondary">Editar Perfil</button>
+          </div>
 
           <!-- Pestañas -->
           <div class="profile-tabs">

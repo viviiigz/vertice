@@ -17,6 +17,7 @@ const login = async (event) => {
       localStorage.setItem("token", res.token);
       localStorage.setItem("userType", res.userType); // Guardar tipo de usuario
       localStorage.setItem("username", res.username); 
+      localStorage.setItem("email", res.email);
       
       // Redirección según tipo de usuario
       switch(res.userType) {
